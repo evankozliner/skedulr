@@ -1,0 +1,13 @@
+<%= form_for @shift do |f| %>
+  <p>
+    <%= f.label :start %>
+    <%= f.datetime_field :start %>
+  </p>
+  <p>
+    <%= f.label :stop %>
+    <%= f.datetime_field :stop %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
