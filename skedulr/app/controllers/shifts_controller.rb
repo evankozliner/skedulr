@@ -8,6 +8,8 @@ class ShiftsController < ApplicationController
     @employee = current_employee
     if current_employee.business_id.blank?
       redirect_to new_business_path
+    else
+      @business = Business.find(current_employee.business_id)
     end
   end
 
