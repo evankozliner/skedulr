@@ -10,8 +10,10 @@ class ShiftsController < ApplicationController
 
   def create
     @shift = Shift.new(shift_params)
-    @shift.employee_id = params[:employee_id]
-    @shift.save
+    @shift.employee_id = current_employee.id
+    if !@shift.save
+      puts @shift.errors.full_messages
+    end
 
     redirect_to shifts_path
   end
