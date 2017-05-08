@@ -13,7 +13,7 @@ class ShiftsController < ApplicationController
         redirect_to edit_employee_path(@employee)
       end
     else
-      redirect_to new_business_path
+      redirect_to businesses_path
     end
   end
 

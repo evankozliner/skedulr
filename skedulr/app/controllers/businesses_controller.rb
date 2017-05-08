@@ -1,6 +1,10 @@
 class BusinessesController < ApplicationController
   include BusinessesHelper
 
+  def index
+    @businesses = Business.search(params[:term])
+  end
+
   def create
     @business = Business.new(business_params)
     @business.save

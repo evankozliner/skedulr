@@ -1,1 +1,11 @@
-<h1> Hi Index </h1>
+<%= form_tag(businesses_path, method: :get) do %>
+  <%= text_field_tag :term, params[:term] %>
+  <%= submit_tag 'Search', name: nil %>
+<% end %>
+<% for business in @businesses do %>
+  <ul>
+    <li>
+      <%= business.name %>
+    </li>
+  </ul>
+<% end %>
