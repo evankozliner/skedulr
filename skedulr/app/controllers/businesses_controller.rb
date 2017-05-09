@@ -3,6 +3,7 @@ class BusinessesController < ApplicationController
 
   def index
     @businesses = Business.search(params[:term])
+    @employee = current_employee
   end
 
   def create
@@ -16,10 +17,15 @@ class BusinessesController < ApplicationController
     #determine where to redirect
     if current_employee.first_name.blank? || current_employee.last_name.blank?
       redirect_to edit_employee_path(current_employee)
+    else
+      redirect_to shifts_path
     end
   end
 
   def new
     @business = Business.new
+  end
+
+  def edit
   end
 end
