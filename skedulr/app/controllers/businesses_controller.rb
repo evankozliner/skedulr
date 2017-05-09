@@ -15,11 +15,8 @@ class BusinessesController < ApplicationController
 
     #Should probably test if the employee profile has been filled out to
     #determine where to redirect
-    if current_employee.first_name.blank? || current_employee.last_name.blank?
-      redirect_to edit_employee_path(current_employee)
-    else
-      redirect_to shifts_path
-    end
+    redirect_to shifts_path
+    
   end
 
   def new

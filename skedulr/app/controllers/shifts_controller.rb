@@ -7,11 +7,10 @@ class ShiftsController < ApplicationController
     @first_name = current_employee.first_name
     @employee = current_employee
 
-    if Business.exists?(current_employee.business_id)
+    if @employee.first_name.blank? || @employee.last_name.blank?
+      redirect_to edit_employee_path(@employee)
+    elsif Business.exists?(current_employee.business_id)
       @business = Business.find(current_employee.business_id)
-      if @employee.first_name.blank? || @employee.last_name.blank?
-        redirect_to edit_employee_path(@employee)
-      end
     else
       redirect_to businesses_path
     end
