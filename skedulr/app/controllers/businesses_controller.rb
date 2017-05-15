@@ -16,7 +16,6 @@ class BusinessesController < ApplicationController
     #Should probably test if the employee profile has been filled out to
     #determine where to redirect
     redirect_to shifts_path
-    
   end
 
   def new
