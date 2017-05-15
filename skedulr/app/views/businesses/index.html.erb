@@ -1,1 +1,13 @@
-<h1> Hi Index </h1>
+<%= link_to "Create New Business", new_business_path %> or
+<p> Search for existing business </p>
+<%= form_tag(businesses_path, method: :get) do %>
+  <%= text_field_tag :term, params[:term] %>
+  <%= submit_tag 'Search', name: nil %>
+<% end %>
+<% for business in @businesses do %>
+  <ul>
+    <li>
+      <%= link_to business.name, employee_path(@employee, employee: {business_id: business.id}), method: :put %>
+    </li>
+  </ul>
+<% end %>
