@@ -1,5 +1,10 @@
 <h1><%= @business.name %></h1>
 <h3><%= @first_name %>'s Shifts</h3>
+
+<div id="calender-container">
+  <div id="calendar"></div>
+</div>
+
 <ul>
   <% @employee.shifts.each do |shift| %>
   <li>
