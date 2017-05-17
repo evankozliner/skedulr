@@ -3,7 +3,7 @@
 <% for business in @businesses do %>
   <ul>
     <li>
-      <%= link_to business.name, shift_path(business_id) %>
+      <%= link_to business.name, business_shifts_path(business.id) %>
       <%= link_to "Remove", business_path(business.id), method: :delete%>
     </li>
   </ul>
