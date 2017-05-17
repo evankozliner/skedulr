@@ -11,11 +11,13 @@ class BusinessesController < ApplicationController
     @business.save
 
     #Attach new business to current employee
-    current_employee.update(business_id: @business.id)
+    @employee = current_employee
+    @relation = BusinessEmployeeRelation.new(employee_id: @employee.id, business_id: @business.id)
+    @relation.save
 
     #Should probably test if the employee profile has been filled out to
     #determine where to redirect
-    redirect_to shifts_path
+    redirect_to employee_path(@employee)
   end
 
   def new
@@ -23,5 +25,24 @@ class BusinessesController < ApplicationController
   end
 
   def edit
+  end
+
+  def update
+    @employee = current_employee
+    @business = Business.find(params[:id])
+    @relation = BusinessEmployeeRelation.new(employee_id: @employee.id, business_id: @business.id)
+    @relation.save
+
+    redirect_to employee_path(@employee)
+  end
+
+  def destroy
+    @employee = current_employee
+    @business = Business.find(params[:id])
+    @relation = BusinessEmployeeRelation.where("business_id = ? AND employee_id = ?", @business.id, @employee.id)
+
+    BusinessEmployeeRelation.destroy(@relation.ids)
+
+    redirect_to employee_path(@employee)
   end
 end
