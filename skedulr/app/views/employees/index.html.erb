@@ -1,0 +1,10 @@
+<h3>Hi <%= @employee.first_name %></h3>
+<p>Which business would you like to look at your shifts for?</p>
+<% for business in @businesses do %>
+  <ul>
+    <li>
+      <%= link_to business.name, shift_path(business_id) %>
+      <%= link_to "Remove", business_path(business.id), method: :delete%>
+    </li>
+  </ul>
+<% end %>

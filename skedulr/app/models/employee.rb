@@ -3,6 +3,6 @@ class Employee < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  belongs_to :business, optional: true
   has_many :shifts
+  has_many :businesses, through: :shifts
 end

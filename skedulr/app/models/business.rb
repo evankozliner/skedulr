@@ -1,5 +1,6 @@
 class Business < ApplicationRecord
-  has_many :employees
+  has_many :shifts
+  has_many :employees, through: :shifts
 
   before_save :lowercase_name!
 
