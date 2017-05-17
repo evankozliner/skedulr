@@ -17,7 +17,7 @@ class BusinessesController < ApplicationController
 
     #Should probably test if the employee profile has been filled out to
     #determine where to redirect
-    redirect_to employee_path(@employee)
+    redirect_to employees_path
   end
 
   def new
@@ -33,7 +33,7 @@ class BusinessesController < ApplicationController
     @relation = BusinessEmployeeRelation.new(employee_id: @employee.id, business_id: @business.id)
     @relation.save
 
-    redirect_to employee_path(@employee)
+    redirect_to employees_path
   end
 
   def destroy
@@ -43,6 +43,6 @@ class BusinessesController < ApplicationController
 
     BusinessEmployeeRelation.destroy(@relation.ids)
 
-    redirect_to employee_path(@employee)
+    redirect_to employees_path
   end
 end

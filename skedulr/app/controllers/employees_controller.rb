@@ -1,6 +1,11 @@
 class EmployeesController < ApplicationController
   include EmployeesHelper
 
+  def index
+    @employee = current_employee
+    @businesses = @employee.business
+  end
+
   def create
     @employee = current_employee
     @employee.update(employee_params)
@@ -12,14 +17,14 @@ class EmployeesController < ApplicationController
 
   def show
     @employee = current_employee
-    @businesses = current_employee.business.all
+    @businesses = @employee.business
   end
 
   def update
     @employee = current_employee
     @employee.update(employee_params)
 
-    redirect_to employee_path(@employee)
+    redirect_to employees_path
   end
 
 end

@@ -10,10 +10,11 @@ class ShiftsController < ApplicationController
     if @employee.first_name.blank? || @employee.last_name.blank?
       redirect_to edit_employee_path(@employee)
     elsif Business.exists?(current_employee.business)
-      @business = Business.find(params[:id])
+      @business = Business.find(params[:shift][:business_id])
     else
       redirect_to businesses_path
     end
+    @shifts = Shift.where("business_id = ? AND employee_id = ?", @business.id, @employee.id)
   end
 
   def create
@@ -32,5 +33,6 @@ class ShiftsController < ApplicationController
 
   def edit
   end
+
 
 end
