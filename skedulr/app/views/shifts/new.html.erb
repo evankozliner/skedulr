@@ -1,11 +1,12 @@
+<h1>Create new shift</h1>
 <%= form_for @shift do |f| %>
   <p>
     <%= f.label :start %>
-    <%= f.datetime_field :start %>
+    <%= f.datetime_field :start, min: "#{DateTime.now}" %>
   </p>
   <p>
     <%= f.label :stop %>
-    <%= f.datetime_field :stop %>
+    <%= f.datetime_field :stop, min: "#{DateTime.now}"%>
   </p>
   <p>
     <%= f.submit %>

@@ -30,8 +30,9 @@ class BusinessesController < ApplicationController
   def update
     @employee = current_employee
     @business = Business.find(params[:id])
-    @relation = BusinessEmployeeRelation.new(employee_id: @employee.id, business_id: @business.id)
-    @relation.save
+    if find_business_employee_relation(@business.id,@employee.id).empty?
+      @employee.business << @business
+    end
 
     redirect_to employees_path
   end
@@ -39,10 +40,15 @@ class BusinessesController < ApplicationController
   def destroy
     @employee = current_employee
     @business = Business.find(params[:id])
-    @relation = BusinessEmployeeRelation.where("business_id = ? AND employee_id = ?", @business.id, @employee.id)
 
-    BusinessEmployeeRelation.destroy(@relation.ids)
+    @employee.business.destroy(@business.id)
 
     redirect_to employees_path
+  end
+
+  private
+
+  def find_business_employee_relation(business_id, employee_id)
+    BusinessEmployeeRelation.where("business_id = ? AND employee_id = ?", business_id, employee_id)
   end
 end
