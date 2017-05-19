@@ -49,8 +49,9 @@ class BusinessesController < ApplicationController
   def destroy_relation
     @employee = current_employee
     @business = Business.find(params[:id])
+    @relation = find_business_employee_relation(@business.id, @employee.id)
 
-    @employee.businesses.destroy(@business.id)
+    BusinessEmployeeRelation.destroy(@relation.ids)
 
     redirect_to employees_path
   end
