@@ -1,0 +1,2 @@
+class ManagerEmployee < ApplicationRecord
+end
