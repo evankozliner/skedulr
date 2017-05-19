@@ -2,11 +2,11 @@
 <%= form_for @shift do |f| %>
   <p>
     <%= f.label :start %>
-    <%= f.datetime_field :start, min: "#{DateTime.now}" %>
+    <%= f.datetime_field :start, min: "#{DateTime.now-60}" %>
   </p>
   <p>
     <%= f.label :stop %>
-    <%= f.datetime_field :stop, min: "#{DateTime.now}"%>
+    <%= f.datetime_field :stop, min: "#{DateTime.now-60}"%>
   </p>
   <p>
     <%= f.submit %>

@@ -1,13 +1,15 @@
 class EmployeesController < ApplicationController
   include EmployeesHelper
 
+  before_action :authenticate_employee!
+
   def index
     @employee = current_employee
 
     if @employee.first_name.blank? || @employee.last_name.blank?
       redirect_to edit_employee_path(@employee)
-    elsif Business.exists?(current_employee.business)
-      @businesses = @employee.business
+    elsif @employee.businesses.count
+      @businesses = @employee.businesses
     else
       redirect_to businesses_path
     end

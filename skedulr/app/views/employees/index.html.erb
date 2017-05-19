@@ -4,7 +4,7 @@
   <ul>
     <li>
       <%= link_to business.name, shifts_path(shift: {business_id: business.id}) %>
-      <%= link_to "Remove", business_path(business.id), method: :delete%>
+      <%= link_to "Remove", destroy_relation_path(business.id), method: :delete%>
     </li>
   </ul>
 <% end %>

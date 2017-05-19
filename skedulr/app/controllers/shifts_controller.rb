@@ -1,8 +1,6 @@
 class ShiftsController < ApplicationController
   include ShiftsHelper
 
-  before_action :authenticate_employee!
-
   def index
     @first_name = current_employee.first_name
     @employee = current_employee

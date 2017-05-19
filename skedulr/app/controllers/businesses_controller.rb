@@ -31,17 +31,26 @@ class BusinessesController < ApplicationController
     @employee = current_employee
     @business = Business.find(params[:id])
     if find_business_employee_relation(@business.id,@employee.id).empty?
-      @employee.business << @business
+      @employee.businesses << @business
     end
 
     redirect_to employees_path
   end
 
   def destroy
+    @business = Business.find(params[:id])
+
+    @business.destroy
+
+    redirect_to businesses_path
+  end
+
+
+  def destroy_relation
     @employee = current_employee
     @business = Business.find(params[:id])
 
-    @employee.business.destroy(@business.id)
+    @employee.businesses.destroy(@business.id)
 
     redirect_to employees_path
   end

@@ -4,6 +4,6 @@ class Employee < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :business_employee_relations
-  has_many :business, through: :business_employee_relations #, optional: true
+  has_many :businesses, through: :business_employee_relations #, optional: true
   has_many :shifts
 end
