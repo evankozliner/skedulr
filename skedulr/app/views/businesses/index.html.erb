@@ -7,7 +7,9 @@
 <% for business in @businesses do %>
   <ul>
     <li>
-      <%= link_to business.name, employee_path(@employee, employee: {business_id: business.id}), method: :put %>
+      <%= business.name %>
+      <%= link_to "Add", business_path(business.id), method: :put %>
+      <%= link_to "Remove", business_path(business.id), method: :delete%>
     </li>
   </ul>
 <% end %>

@@ -1,0 +1,5 @@
+class RemoveBusinessIdFromEmployee < ActiveRecord::Migration[5.0]
+  def change
+    remove_column :employees, :business_id, :integer
+  end
+end

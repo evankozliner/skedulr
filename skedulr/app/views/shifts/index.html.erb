@@ -6,18 +6,16 @@
 </div>
 
 <ul>
-  <% @employee.shifts.each do |shift| %>
+  <% @shifts.each do |shift| %>
   <li>
     <p> Start: <%= shift.start %> </p>
     <p> Stop: <%= shift.stop %> </p>
   </li>
   <% end %>
 </ul>
-<%= link_to "Create new shift", new_shift_path, class: "new_shift" %>
-<br></br>
-<%= link_to "Update business", businesses_path %>
-<br></br>
-<%= link_to "Edit employee profile", edit_employee_path(@employee) %>
+<%= link_to "Create new shift", new_shift_path(shift: {business_id: @business.id}), class: "new_shift" %>
+<br>
+<%= link_to "Back to profile", employees_path %>
 <!--<% if @employee.is_manager %>
   Above line to be placed here later
 <% end %> -->
