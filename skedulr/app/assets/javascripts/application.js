@@ -20,6 +20,21 @@
 $(document).ready(function() {
   $('#calendar').fullCalendar({
     defaultView: 'basicWeek',
-    height: 400
+    height: 400,
+    events: function(start, end, timezone, callback) {
+      $.get('shifts/by_business/' + $('#hidden-business-id').data('business_id'))
+      //TODO extract to function
+        .done(function(res) {
+          var events = [];
+
+          events.push({
+            title: '',
+            start: '',
+            end: ''
+          });
+
+          callback(events);
+      });
+    }
   });
 });

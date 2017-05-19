@@ -32,6 +32,8 @@ class ShiftsController < ApplicationController
   def edit
   end
 
-
-
+  def get_shifts_by_business 
+    business = Business.find(params[:business_id])
+    render json: {}
+  end
 end
