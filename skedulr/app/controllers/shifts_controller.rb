@@ -33,7 +33,8 @@ class ShiftsController < ApplicationController
   end
 
   def get_shifts_by_business 
-    business = Business.find(params[:business_id])
-    render json: {}
+    shift_data = Shift.where(employee_id: current_employee.id, 
+                             business_id: params[:business_id])
+    render json: shift_data.pluck(:start, :stop)
   end
 end

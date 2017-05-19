@@ -19,22 +19,47 @@
 
 $(document).ready(function() {
   $('#calendar').fullCalendar({
-    defaultView: 'basicWeek',
+    header: {
+            left: 'prev,next ',
+            center: 'title',
+            right: 'month,agendaWeek,basicDay'
+    },
+    defaultView: 'agendaWeek',
     height: 400,
     events: function(start, end, timezone, callback) {
-      $.get('shifts/by_business/' + $('#hidden-business-id').data('business_id'))
-      //TODO extract to function
-        .done(function(res) {
-          var events = [];
+  $.get('shifts/by_business/' + $('#hidden-business-id').data('business_id'))
+    .done(function(res) {
+      var events = [];
 
-          events.push({
-            title: '',
-            start: '',
-            end: ''
-          });
-
-          callback(events);
-      });
-    }
+      for (var i = 0; i < res.length; i++) {
+        events.push({
+          // TODO Currently hardcoded, name optional?
+          title: "Shift",
+          start: res[i][0].split(".")[0],
+          end: res[i][1].split(".")[0]
+        });
+      }
+      console.log(events)
+      callback(events);
+  });
+}
   });
 });
+
+//function(start, end, timezone, callback) {
+//  $.get('shifts/by_business/' + $('#hidden-business-id').data('business_id'))
+//    .done(function(res) {
+//      var events = [];
+//
+//      for (var i = 0; i < res.length; i++) {
+//        events.push({
+//          // TODO Currently hardcoded, name optional?
+//          title: "Shift",
+//          start: res[i][0].split(".")[0],
+//          end: res[i][1].split(".")[0]
+//        });
+//      }
+//      console.log(events)
+//      callback(events);
+//  });
+//}
