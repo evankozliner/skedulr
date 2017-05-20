@@ -15,7 +15,7 @@ class ShiftsController < ApplicationController
     @shift = Shift.new(shift_params)
     @shift.employee_id = current_employee.id
     @shift.business_id = session[:current_business_id]
-    puts session[:current_business_id]
+    #puts session[:current_business_id]
     if !@shift.save
       puts @shift.errors.full_messages
     end
