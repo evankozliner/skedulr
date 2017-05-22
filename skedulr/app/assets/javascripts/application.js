@@ -19,7 +19,31 @@
 
 $(document).ready(function() {
   $('#calendar').fullCalendar({
-    defaultView: 'basicWeek',
-    height: 400
+    header: {
+            left: 'prev,next ',
+            center: 'title',
+            right: 'month,agendaWeek,basicDay'
+    },
+    defaultView: 'agendaWeek',
+    height: 400,
+    events: handleEventData
   });
 });
+
+handleEventData = function(start, end, timezone, callback) {
+  $.get('shifts/by_business/' + $('#hidden-business-id').data('business_id'))
+    .done(function(res) {
+      var events = [];
+
+      for (var i = 0; i < res.length; i++) {
+        events.push({
+          // TODO Currently hardcoded, name optional?
+          title: "Shift",
+          start: res[i][0].split(".")[0],
+          end: res[i][1].split(".")[0]
+        });
+      }
+      console.log(events)
+      callback(events);
+  });
+}
