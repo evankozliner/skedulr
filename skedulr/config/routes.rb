@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   resources :shifts
   resources :businesses
   resources :employees
+  resources :managers
 end
