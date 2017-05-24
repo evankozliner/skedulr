@@ -5,14 +5,10 @@ class ShiftsController < ApplicationController
     @first_name = current_employee.first_name
     @employee = current_employee
 
-    session[:current_business_id] ||= params[:shift][:business_id]
+    session[:current_business_id] = params[:shift][:business_id]
     @business = Business.find(session[:current_business_id])
 
     @shifts = Shift.where(business_id: @business.id, employee_id: @employee.id)
-
-    if @employee.manager_id
-      @manager = Manager.find(@employee.manager_id)
-    end
   end
 
   def create
@@ -35,7 +31,5 @@ class ShiftsController < ApplicationController
 
   def edit
   end
-
-
 
 end

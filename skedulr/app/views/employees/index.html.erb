@@ -1,6 +1,6 @@
 <h3>Hi <%= @employee.first_name %></h3>
 <p>Which business would you like to look at your shifts for?</p>
-<% for business in @businesses do %>
+<% @businesses.each do |business| %>
   <ul>
     <li>
       <%= link_to business.name, shifts_path(shift: {business_id: business.id}) %>

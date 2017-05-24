@@ -8,7 +8,12 @@ class Employee < ApplicationRecord
   has_many :businesses, through: :business_employee_relations #, optional: true
 
   has_many :shifts
-  
+
   has_many :manager_employees
   has_many :managers, through: :manager_employees
+
+  def is_manager?(business_id)
+    Manager.exists?(employee_id: self.id, business_id: business_id)
+  end
+
 end
