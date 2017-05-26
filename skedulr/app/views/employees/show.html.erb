@@ -1,10 +1,16 @@
-<h3>Hi <%= @employee.first_name %></h3>
-<p>Which business would you like to look at your shifts for?</p>
-<% for business in @businesses do %>
-  <ul>
-    <li>
-      <%= link_to business.name, shifts_path(shift: {business_id: business.id}) %>
-      <%= link_to "Remove", business_path(business.id), method: :delete%>
-    </li>
-  </ul>
+<h3><%= @managed_employee.full_name %>'s Shifts</h3>
+<h5><%= @business.name %></h5>
+
+<ul>
+  <% @shifts.each do |shift| %>
+  <li>
+    <p> Start: <%= shift.start %> </p>
+    <p> Stop: <%= shift.stop %> </p>
+  </li>
+  <% end %>
+</ul>
+<% if @current_employee.is_manager?(@business.id) %>
+  <%= link_to "Create new shift", new_shift_path(shift: {business_id: @business.id}), class: "new_shift" %>
 <% end %>
+<br>
+<%= link_to "Home", employees_path %>

@@ -37,6 +37,23 @@ class BusinessesController < ApplicationController
     redirect_to employees_path
   end
 
+  def show
+    @business = Business.find(params[:id])
+    @managers = Manager.where(business_id: @business.id)
+    @employee = current_employee
+
+    if @employee.is_manager?(@business.id)
+      @managed_employees = Manager.where(employee_id: @employee.id,
+                                         business_id: @business.id).
+                                         first.employees
+      session[:manager] = true
+    else
+      session[:manager] = false
+    end
+
+    session[:current_business_id] = params[:id]
+  end
+
   def destroy
     @business = Business.find(params[:id])
 

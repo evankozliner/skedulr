@@ -1,0 +1,19 @@
+<h1><%= @business.name %></h1>
+<h3>Managers</h3>
+<% @managers.each do |manager| %>
+  <ul>
+    <li><%= manager.find_name %></li>
+  </ul>
+<% end %>
+<br>
+<%= link_to new_manager_path %>
+<br>
+<% if @employee.is_manager?(@business.id) %>
+  <h3>Employees</h3>
+  <% @managed_employees.each do |employee| %>
+    <ul>
+      <li><%= link_to employee.full_name, employee_path(employee.id) %></li>
+    </ul>
+  <% end %>
+<% end %>
+<%= link_to "Home", employees_path %>

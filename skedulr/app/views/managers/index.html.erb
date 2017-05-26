@@ -1,9 +1,7 @@
 <h1><%= @business.name %></h1>
 
-<% @employee_names.each do |name| %>
+<% @managers.each do |manager| %>
   <ul>
-    <li>
-      <%= name %>
-    </li>
+    <li><%= manager.find_name %></li>
   </ul>
 <% end %>

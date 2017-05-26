@@ -4,16 +4,19 @@ class ManagersController < ApplicationController
     @managers = Manager.where(business_id: session[:current_business_id])
 
     @business = Business.find(session[:current_business_id])
-
-    @employee_names = []
-    @managers.each do |manager|
-      employee = manager.find_employee
-      @employee_names << "#{employee.first_name} #{employee.last_name}"
-    end
-
   end
 
   def create
-    @manager = Manager.create(business_id: @business.id, employee_id: @employee.id)
+    @manager = Manager.create(business_id: session[:current_business_id],
+                              employee_id: params[:employee][:id])
   end
+
+  def new
+    @business = Business.find(session[:current_business_id])
+    @employees = Employee.where(business_id: @business.id).
+                          select do |employee|
+                            employee.is_manager?(@business.id)
+                          end
+  end
+
 end

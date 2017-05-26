@@ -16,4 +16,16 @@ class Employee < ApplicationRecord
     Manager.exists?(employee_id: self.id, business_id: business_id)
   end
 
+  def full_name
+    "#{self.first_name} #{self.last_name}"
+  end
+
+  def has_manager?(business_id)
+    self.managers.exists?(business_id: business_id)
+  end
+
+  def find_manager_profiles(business_id)
+    self.managers.where(business_id: business_id)
+  end
+
 end

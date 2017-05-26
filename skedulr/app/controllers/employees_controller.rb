@@ -28,8 +28,10 @@ class EmployeesController < ApplicationController
   end
 
   def show
-    @employee = current_employee
-    @businesses = @employee.business
+    @current_employee = current_employee
+    @managed_employee = Employee.find(params[:id])
+    @business = Business.find(session[:current_business_id])
+    @shifts = Shift.where(business_id: @business.id, employee_id: @managed_employee.id)
   end
 
   def update
