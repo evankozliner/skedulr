@@ -39,6 +39,7 @@ gem 'devise'
 # Full calender rails
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
