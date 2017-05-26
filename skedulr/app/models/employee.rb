@@ -6,4 +6,6 @@ class Employee < ApplicationRecord
   has_many :business_employee_relations
   has_many :businesses, through: :business_employee_relations #, optional: true
   has_many :shifts
+
+  has_many :manager_employees, foreign_key: "manager_id", primary_key: "id"
 end
