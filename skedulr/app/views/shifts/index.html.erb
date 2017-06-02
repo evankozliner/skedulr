@@ -14,6 +14,10 @@
   </li>
   <% end %>
 </ul>
-<%= link_to "Create new shift", new_shift_path(shift: {business_id: @business.id}), class: "new_shift" %>
+<% if session[:manager]||@employee.is_manager?(@business.id) %>
+  <%= link_to "Create new shift",
+              new_shift_path(shift: {business_id: @business.id}),
+              class: "new_shift" %>
+<% end %>
 <br>
 <%= link_to "Back to profile", employees_path %>

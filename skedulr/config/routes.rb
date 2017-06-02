@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :shifts
   resources :businesses
   resources :employees
+  resources :manager_employees
 
   get 'shifts/by_business/:business_id', to: 'shifts#get_shifts_by_business'
 end

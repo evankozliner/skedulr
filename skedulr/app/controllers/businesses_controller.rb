@@ -37,6 +37,27 @@ class BusinessesController < ApplicationController
     redirect_to employees_path
   end
 
+  def show
+    @business = Business.find(params[:id])
+    @employee = current_employee
+    @employees = @business.employees
+    @managers = @employees.select { |x| x.is_manager?(@business.id) }
+
+    sorted_employees = @employees.partition do |employee|
+                           ManagerEmployee.exists?(business_id: @business.id,
+                                                   manager_id: @employee.id,
+                                                   employee_id: employee.id) ||
+                           employee.eql?(@employee)
+                         end
+
+    @managed_employees = sorted_employees[0]
+    @employees = sorted_employees[1]
+
+    session[:manager] = @employee.id
+    session[:employee_id] = nil
+    session[:current_business_id] = params[:id]
+  end
+
   def destroy
     @business = Business.find(params[:id])
 

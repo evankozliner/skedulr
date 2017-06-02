@@ -1,0 +1,9 @@
+<h1>Add Manager</h1>
+<h3><%= @business.name %></h3>
+<h5>Select employees that <%= @employee.full_name %> will manage:</h5>
+<%= form_for @manager do |f| %>
+  <%= f.collection_check_boxes :employee_ids, @business_employees.all, :id, :full_name %>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
