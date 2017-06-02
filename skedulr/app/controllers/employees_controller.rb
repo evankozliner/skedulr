@@ -14,8 +14,9 @@ class EmployeesController < ApplicationController
       redirect_to businesses_path
     end
 
+    session[:manager] = false
+    session[:employee_id] = nil
     session[:current_business_id] = nil
-
   end
 
   def create
@@ -24,7 +25,11 @@ class EmployeesController < ApplicationController
   end
 
   def edit
-    @employee = current_employee
+    if session[:manager]
+      @employee = Employee.find(params[:id])
+    else
+      @employee = current_employee
+    end
   end
 
   def show
@@ -33,7 +38,12 @@ class EmployeesController < ApplicationController
   end
 
   def update
-    @employee = current_employee
+    if session[:manager]
+      @employee = Employee.find(params[:id])
+    else
+      @employee = current_employee
+    end
+    
     @employee.update(employee_params)
 
     redirect_to employees_path

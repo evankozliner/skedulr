@@ -2,6 +2,8 @@ class Business < ApplicationRecord
   has_many :business_employee_relations
   has_many :employees, through: :business_employee_relations
 
+  has_many :manager_employees
+
   before_save :lowercase_name!
 
   after_find :titleize_name

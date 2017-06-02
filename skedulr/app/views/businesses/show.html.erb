@@ -1,0 +1,31 @@
+<h1><%= @business.name %></h1>
+<h3>Managers</h3>
+  <ul>
+    <% @managers.each do |manager| %>
+    <li>
+      <%= manager.full_name %>
+      <%= manager.id %>
+    </li>
+    <% end %>
+  </ul>
+<br>
+<h3>Employees</h3>
+  <ul>
+    <% @managed_employees.each do |employee| %>
+    <li>
+      <%= link_to employee.full_name, shifts_path(employee: {id: employee.id}) %>
+      <%= employee.id %>
+      <% if !employee.is_manager?(@business.id) %>
+        <%= link_to "Add as Manager", edit_employee_path(employee.id) %>
+      <% end %>
+    </li>
+    <% end %>
+
+    <% @employees.each do |employee| %>
+    <li>
+      <%= employee.full_name %>
+      <%= employee.id %>
+      <%= link_to "Add as Manager", new_manager_employee_path(employee: {id: employee.id}) %>
+    </li>
+    <% end %>
+  </ul>
