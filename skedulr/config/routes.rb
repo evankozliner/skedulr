@@ -10,5 +10,9 @@ Rails.application.routes.draw do
   resources :employees
   resources :manager_employees
 
+  get 'edit_manager/:id', to: 'manager_employees#manager_edit',
+    as: :edit_managed_employees
+  post 'edit_manager/add/:id', to: 'manager_employees#manager_update',
+    as: :update_managed_employees
   get 'shifts/by_business/:business_id', to: 'shifts#get_shifts_by_business'
 end

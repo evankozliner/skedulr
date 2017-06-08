@@ -1,0 +1,7 @@
+<!-- <% @unmanaged_employees.each do |employee| %> -->
+  <li id="unmanaged-<%= employee.id %>">
+    <%= employee.full_name %>
+    <%= employee.email %>
+    <%= link_to "Add", "#", { class: "add-employee-to-manager", 'data-id': "#{employee.id}" } %>
+  </li>
+<!-- <% end %> -->

@@ -1,8 +1,8 @@
-<h1>Edit Managed Employees</h1>
+<h1>Edit Manager</h1>
 <h3><%= @business.name %></h3>
-<h5>Employees that <%= @manager.full_name %> manages:</h5>
-<div id="managed-employees-section">
-  <ul id="managed-employees">
+<h5>Employees that <%= @employee.full_name %> manages:</h5>
+<div id="managed-employees">
+  <ul>
     <%= render partial: 'managed_employees' %>
   </ul>
 </div>

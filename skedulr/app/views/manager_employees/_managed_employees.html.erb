@@ -1,0 +1,7 @@
+<!-- <% @managed_employees.each do |employee| %> -->
+  <li id="managed-<%= employee.id %>">
+    <%= employee.full_name %>
+    <%= employee.email %>
+    <%= link_to "Remove", "#", { class: "remove-employee-from-manager", 'data-id': "#{employee.id}" } %>
+  </li>
+<!-- <% end %> -->

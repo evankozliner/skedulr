@@ -15,8 +15,10 @@
     <li>
       <%= link_to employee.full_name, shifts_path(employee: {id: employee.id}) %>
       <%= employee.id %>
-      <% if !employee.is_manager?(@business.id) %>
-        <%= link_to "Add as Manager", edit_employee_path(employee.id) %>
+      <% if employee.is_manager?(@business.id) %>
+        <%= link_to "Edit Manager", new_manager_employee_path(employee: {id: employee.id}) %>
+      <% else %>
+        <%= link_to "Add as Manager", new_manager_employee_path(employee: {id: employee.id}) %>
       <% end %>
     </li>
     <% end %>
@@ -25,7 +27,9 @@
     <li>
       <%= employee.full_name %>
       <%= employee.id %>
-      <%= link_to "Add as Manager", new_manager_employee_path(employee: {id: employee.id}) %>
+      <% if !employee.is_manager?(@business.id) %>
+        <%= link_to "Add as Manager", new_manager_employee_path(employee: {id: employee.id}) %>
+      <% end %>
     </li>
     <% end %>
   </ul>
