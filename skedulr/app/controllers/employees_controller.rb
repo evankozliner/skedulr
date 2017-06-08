@@ -43,7 +43,7 @@ class EmployeesController < ApplicationController
     else
       @employee = current_employee
     end
-    
+
     @employee.update(employee_params)
 
     redirect_to employees_path
