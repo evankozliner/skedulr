@@ -7,8 +7,9 @@
   </ul>
 </div>
 <h5>Employees that <%= @manager.full_name %> will manage:</h5>
-<div id="unmanaged-employees">
-  <ul>
+<div id="unmanaged-employees-section">
+  <ul id="unmanaged-employees">
     <%= render partial: 'unmanaged_employees' %>
   </ul>
 </div>
+<%= link_to "Back to Business", business_path(@business.id) %>
