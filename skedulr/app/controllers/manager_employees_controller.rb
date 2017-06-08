@@ -17,9 +17,22 @@ class ManagerEmployeesController < ApplicationController
   def create
     @manager = ManagerEmployee.new(manager_id: session[:employee_id],
                                    employee_id: params[:id])
-    puts params[:id]
     @manager.business = Business.find(session[:current_business_id])
     @manager.save
+
+    respond_to do |format|
+      format.html { redirect_to new_manager_employee_path }
+      format.js
+    end
+  end
+
+  def manager_delete
+    @managers = ManagerEmployee.where(manager_id: session[:employee_id],
+                                      employee_id: params[:id],
+                                      business_id: session[:current_business_id]).
+                                      destroy_all
+    puts params[:id]
+    # ManagerEmployee.destroy(@managers.ids)
 
     respond_to do |format|
       format.html { redirect_to new_manager_employee_path }

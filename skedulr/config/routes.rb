@@ -8,11 +8,9 @@ Rails.application.routes.draw do
   resources :shifts
   resources :businesses
   resources :employees
-  resources :manager_employees
+  resources :manager_employees, except: [:destroy]
 
-  get 'edit_manager/:id', to: 'manager_employees#manager_edit',
-    as: :edit_managed_employees
-  post 'edit_manager/add/:id', to: 'manager_employees#manager_update',
-    as: :update_managed_employees
+  delete 'manager_employees/delete', to: 'manager_employees#manager_delete'
+
   get 'shifts/by_business/:business_id', to: 'shifts#get_shifts_by_business'
 end
