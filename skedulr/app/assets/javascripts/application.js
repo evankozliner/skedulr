@@ -44,7 +44,6 @@ handleEventData = function(start, end, timezone, callback) {
           end: res[i][1].split(".")[0]
         });
       }
-      console.log(events)
       callback(events);
   });
 }
