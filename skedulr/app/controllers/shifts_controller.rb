@@ -21,7 +21,14 @@ class ShiftsController < ApplicationController
   end
 
   def create
-    @shift = Shift.new(shift_params)
+    shift_values = params[:shift]
+    @shift = Shift.new(start: parse_date(shift_values[:start]), 
+                       stop: parse_date(shift_values[:stop]),
+                       employee_id: current_employee.id,
+                       business_id: session[:current_business_id])
+
+    puts "START"
+    puts @shift.start
 
     if session[:manager]
       @shift.employee_id = session[:employee_id]
@@ -35,6 +42,10 @@ class ShiftsController < ApplicationController
     end
 
     redirect_to shifts_path
+  end
+
+  def parse_date date
+    DateTime.strptime(date, "%m/%d/%Y %l:%M %p")
   end
 
   def new

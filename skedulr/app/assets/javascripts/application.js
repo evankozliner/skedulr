@@ -35,8 +35,10 @@ handleEventData = function(start, end, timezone, callback) {
   $.get('shifts/by_business/' + $('#hidden-business-id').data('business_id'))
     .done(function(res) {
       var events = [];
+      console.log(res);
 
       for (var i = 0; i < res.length; i++) {
+        console.log(res[i]);
         events.push({
           // TODO Currently hardcoded, name optional?
           title: "Shift",
