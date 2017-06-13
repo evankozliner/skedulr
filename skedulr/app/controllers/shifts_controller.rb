@@ -27,9 +27,6 @@ class ShiftsController < ApplicationController
                        employee_id: current_employee.id,
                        business_id: session[:current_business_id])
 
-    puts "START"
-    puts @shift.start
-
     if session[:manager]
       @shift.employee_id = session[:employee_id]
     else
